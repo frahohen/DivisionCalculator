@@ -1,5 +1,6 @@
 package com.github.frahohen.divisioncalculator;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,21 @@ public class DivisionActivity extends AppCompatActivity {
 
         outputText = "";
         outputLabel = "";
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        int orientation = newConfig.orientation;
+
+        if(orientation == Configuration.ORIENTATION_PORTRAIT ||
+                orientation == Configuration.ORIENTATION_LANDSCAPE ||
+                orientation == Configuration.ORIENTATION_UNDEFINED) {
+
+            textViewOutputLabel.setText(outputLabel);
+            textViewOutputText.setText(outputText);
+        }
     }
 
     public void onButtonClickDevide(View v) {
