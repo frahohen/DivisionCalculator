@@ -31,8 +31,8 @@ public class DivisionActivity extends AppCompatActivity {
         textViewOutputLabel = (TextView) findViewById(R.id.textViewOutputLabel);
         textViewOutputText = (TextView) findViewById(R.id.textViewOutputText);
 
-        outputText = "";
-        outputLabel = "";
+        outputText = "3";
+        outputLabel = OUTPUT;
     }
 
     @Override
