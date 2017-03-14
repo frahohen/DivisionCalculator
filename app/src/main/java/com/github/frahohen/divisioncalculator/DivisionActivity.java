@@ -51,34 +51,53 @@ public class DivisionActivity extends AppCompatActivity {
     }
 
     public void onButtonClickDevide(View v) {
-        double dividend = Double.parseDouble(editTextDividend.getText().toString());
-        double divisor = Double.parseDouble(editTextDivisor.getText().toString());
 
-        double result = 0.0;
-
-        if (dividend == 0) {
+        if (editTextDividend.getText().toString().equals(null) || editTextDividend.getText().toString().equals("")) {
             outputLabel = ERROR;
-            outputText = "Dividend hat den Wert 0";
+            outputText = "Dividend hat keinen Wert";
 
-            if (divisor == 0) {
-                outputText = "Divisor und Dividend sind 0";
-
-            }
-        } else if (divisor == 0) {
-            outputLabel = ERROR;
-            outputText = "Division durch 0";
-        } else{
-            try {
-                result = dividend / divisor;
-            } catch(Exception e){
-                Log.getStackTraceString(e);
+            if (editTextDivisor.getText().toString().equals(null) || editTextDivisor.getText().toString().equals("")) {
+                outputText = "Beide Felder haben keinen Wert";
             }
 
-            outputText = Double.toString(result);
-            outputLabel = OUTPUT;
+            textViewOutputLabel.setText(outputLabel);
+            textViewOutputText.setText(outputText);
+        } else if (editTextDivisor.getText().toString().equals(null) || editTextDivisor.getText().toString().equals("")) {
+            outputLabel = ERROR;
+            outputText = "Divisor hat keinen Wert";
+
+            textViewOutputLabel.setText(outputLabel);
+            textViewOutputText.setText(outputText);
+        } else {
+            double dividend = Double.parseDouble(editTextDividend.getText().toString());
+            double divisor = Double.parseDouble(editTextDivisor.getText().toString());
+
+            double result = 0.0;
+
+            if (dividend == 0) {
+                outputLabel = ERROR;
+                outputText = "Dividend hat den Wert 0";
+
+                if (divisor == 0) {
+                    outputText = "Divisor und Dividend sind 0";
+
+                }
+            } else if (divisor == 0) {
+                outputLabel = ERROR;
+                outputText = "Division durch 0";
+            } else {
+                try {
+                    result = dividend / divisor;
+                } catch (Exception e) {
+                    Log.getStackTraceString(e);
+                }
+
+                outputText = Double.toString(result);
+                outputLabel = OUTPUT;
+            }
+
+            textViewOutputLabel.setText(outputLabel);
+            textViewOutputText.setText(outputText);
         }
-
-        textViewOutputLabel.setText(outputLabel);
-        textViewOutputText.setText(outputText);
     }
 }
